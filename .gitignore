@@ -1,2 +1,2 @@
-lnmp/data/redis/
+lnmp/data/redis/*.rdb
 lnmp/data/msyql/
