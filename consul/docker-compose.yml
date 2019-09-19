@@ -1,0 +1,36 @@
+version: "3.0" 
+
+services: 
+    consulserver: 
+        image: progrium/consul:latest
+        hostname: consulserver
+        ports:
+            - 8300
+            - 8400
+            - 8500:8500
+            - 53
+        command: -server -ui-dir /ui -data-dir /tmp/consul --bootstrap-expect=3
+
+    consulserver1: 
+        image: progrium/consul:latest
+        hostname: consulserver1
+        depends_on: 
+            - "consulserver"
+        ports:
+            - 8300
+            - 8400
+            - 8500
+            - 53
+        command: -server -data-dir /tmp/consul -join consulserver
+
+    consulserver2:
+        image: progrium/consul:latest
+        hostname: consulserver2
+        depends_on: 
+            - "consulserver"
+        ports:
+            - 8300
+            - 8400
+            - 8500
+            - 53
+        command: -server -data-dir /tmp/consul -join consulserver

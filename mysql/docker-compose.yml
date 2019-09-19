@@ -1,0 +1,27 @@
+version: "3.0"
+services:
+  master1:
+    build:
+      context: ./master
+      args:
+        - serverid=10
+        - masteruser=slave
+        - masterpwd=slave123456
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+  slave1:
+    build:
+      context: ./slave
+      args:
+        - serverid=11
+        - masterhost=master1
+        - masteruser=slave
+        - masterpwd=slave123456
+    ports:
+      - 3308:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    depends_on:
+      - master1
