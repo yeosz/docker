@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  phpcs:
+    build:
+      context: ./php7.4
+    privileged: true
+    volumes:
+      - ./codes:/var/www/html
+    ports:
+      - 9000:9000
