@@ -1,0 +1,17 @@
+version: "3.0"
+services:
+  redis0:
+    build:
+      context: ./build/
+    ports:
+      - 6379:6379
+  redis1:
+    build:
+      context: ./build/
+    ports:
+      - 6380:6379
+  redis2:
+    build:
+      context: ./build/
+    ports:
+      - 6381:6379
