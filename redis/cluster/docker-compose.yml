@@ -15,3 +15,18 @@ services:
       context: ./build/
     ports:
       - 6381:6379
+  redis3:
+    build:
+      context: ./build/
+    ports:
+      - 6382:6379
+  redis4:
+    build:
+      context: ./build/
+    ports:
+      - 6383:6379
+  redis5:
+    build:
+      context: ./build/
+    ports:
+      - 6384:6379
