@@ -2,34 +2,31 @@ version: "3.0"
 services:
   webserver:
     image: nginx
+    privileged: true
     volumes:
         - ./www:/var/www
         - ./conf/sites:/etc/nginx/conf.d
     ports:
       - 80:80
       - 443:443
-  php7.1:
+  php7.3:
     build:
-      context: ./conf/php7.1
+      context: ./conf/php7.3
+    privileged: true
     volumes:
-      - ./www:/var/www
+      - ./www:/var/www/html
     ports:
-      - 9001:9000
-  php7.2:
-    build:
-      context: ./conf/php7.2
-    volumes:
-      - ./www:/var/www
-    ports:
-      - 9002:9000
+      - 9000:9000
   dbredis:
     image: redis:5.0.1
+    privileged: true
     ports:
       - 6379:6379
     volumes:
       - ./data/redis:/data
   dbmysql:
     image: mysql:5.7
+    privileged: true
     ports:
       - 3306:3306
     environment:
